@@ -13,9 +13,12 @@ function mdLinks() {
       .catch((error) => {
         console.log(error);
       });
-  } else if (options.validate === "--stats") {
+  } else if (options.validate === "--stats" && options.stats === undefined) {
     stats(dir, options);
-  } else if (options.validate === "--validate" && options.stats === "--stats") {
+  } else if (
+    (options.validate === "--validate" && options.stats === "--stats") ||
+    (options.stats === "--validate" && options.validate === "--stats")
+  ) {
     const promises = validate(dir, options);
     let broken = 0;
     Promise.all(promises)
