@@ -1,25 +1,11 @@
 const foundFile = require("./lib/foundFile.js");
 let dir = process.argv[2];
 const options = { validate: process.argv[3], stats: process.argv[4] };
-
+const validate = require("./lib/validate.js");
+const stats = require("./lib/stats.js");
 function mdLinks() {
-  if (options.validate === "--validate") {
-    const links = foundFile(dir, options);
-    const promises = links.map((p) =>
-      p.status.then((statusValue) => {
-        let ok;
-        if (statusValue >= 200 && statusValue < 300) {
-          ok = "ok";
-        } else {
-          ok = "fail";
-        }
-        return {
-          ...p,
-          status: statusValue,
-          ok: ok,
-        };
-      })
-    );
+  if (options.validate === "--validate" && options.stats === undefined) {
+    const promises = validate(dir, options);
     Promise.all(promises)
       .then((data) => {
         console.log(data);
@@ -28,11 +14,22 @@ function mdLinks() {
         console.log(error);
       });
   } else if (options.validate === "--stats") {
-    const links = foundFile(dir, options);
-    const set = new Set();
-    console.log("Total: ", links.length);
-    links.forEach((link) => set.add(link.href));
-    console.log("Unique: ", set.size);
+    stats(dir, options);
+  } else if (options.validate === "--validate" && options.stats === "--stats") {
+    const promises = validate(dir, options);
+    let broken = 0;
+    Promise.all(promises)
+      .then((data) => {
+        stats(dir, options);
+        data.forEach((link) => {
+          if (link.ok === "fail") broken++;
+        });
+
+        console.log("Broken: ", broken);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } else {
     const links = foundFile(dir, options);
     console.log(links);
