@@ -28,8 +28,11 @@ function mdLinks() {
         console.log(error);
       });
   } else if (options.validate === "--stats") {
-    console.log(options.validate);
-    return options;
+    const links = foundFile(dir, options);
+    const set = new Set();
+    console.log("Total: ", links.length);
+    links.forEach((link) => set.add(link.href));
+    console.log("Unique: ", set.size);
   } else {
     const links = foundFile(dir, options);
     console.log(links);
