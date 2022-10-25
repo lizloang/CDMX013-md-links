@@ -3,6 +3,7 @@ let dir = process.argv[2];
 const options = { validate: process.argv[3], stats: process.argv[4] };
 const validate = require("./lib/validate.js");
 const stats = require("./lib/stats.js");
+
 function mdLinks() {
   if (options.validate === "--validate" && options.stats === undefined) {
     const promises = validate(dir, options);
