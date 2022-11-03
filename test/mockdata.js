@@ -4,6 +4,11 @@ const infoLinkMock = {
   options: { validate: "--validate", stats: undefined },
 };
 
+const infoLinkBroken = {
+  dir: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testBroken.md",
+  options: { validate: "--validate", stats: "--stats" },
+};
+
 const validateResultSuccess = {
   text: "Google",
   href: "https://www.google.com/",
@@ -35,6 +40,22 @@ const filteredArray = [
   },
 ];
 
+const resultsValidate = [
+  {
+    text: "Google",
+    href: "https://www.google.com/",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/test.md",
+    status: 200,
+    ok: "ok",
+  },
+  {
+    text: "Markdown",
+    href: "https://es.wikipedia.org/wiki/Markdown",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/test.md",
+    status: 200,
+    ok: "ok",
+  },
+];
 const resultsNoOptios = [
   {
     text: "Google",
@@ -54,4 +75,6 @@ module.exports = {
   statsResultSuccess,
   filteredArray,
   resultsNoOptios,
+  resultsValidate,
+  infoLinkBroken,
 };

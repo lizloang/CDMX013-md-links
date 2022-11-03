@@ -1,15 +1,14 @@
 const foundFile = require("./lib/foundFile.js");
-let dir = process.argv[2];
-const options = { validate: process.argv[3], stats: process.argv[4] };
 const validate = require("./lib/validate.js");
 const stats = require("./lib/stats.js");
 
-function mdLinks() {
+function mdLinks(dir, options) {
   if (options.validate === "--validate" && options.stats === undefined) {
     const promises = validate(dir, options);
-    Promise.all(promises)
+    return Promise.all(promises)
       .then((data) => {
         console.log(data);
+        return data;
       })
       .catch((error) => {
         console.log(error);
@@ -22,7 +21,7 @@ function mdLinks() {
   ) {
     const promises = validate(dir, options);
     let broken = 0;
-    Promise.all(promises)
+    return Promise.all(promises)
       .then((data) => {
         stats(dir, options);
         data.forEach((link) => {
@@ -30,6 +29,7 @@ function mdLinks() {
         });
 
         console.log("Broken: ", broken);
+        return broken;
       })
       .catch((error) => {
         console.log(error);
@@ -41,4 +41,12 @@ function mdLinks() {
   }
 }
 
-mdLinks();
+//;
+if (require.main === module) {
+  mdLinks(process.argv[2], {
+    validate: process.argv[3],
+    stats: process.argv[4],
+  });
+}
+
+module.exports = mdLinks;
