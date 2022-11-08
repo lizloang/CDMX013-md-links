@@ -22,12 +22,13 @@ describe("mdLinks", () => {
   });
 
   test("results with --stats", () => {
-    return expect(
-      mdLinks(infoLinkMock.dir, {
-        validate: undefined,
-        stats: undefined,
-      })
-    ).toEqual(resultsNoOptios);
+    const logSpy = jest.spyOn(console, "log");
+    mdLinks(infoLinkMock.dir, {
+      validate: "--stats",
+      stats: undefined,
+    });
+    expect(logSpy).toHaveBeenCalledWith("Total: ", 2);
+    expect(logSpy).toHaveBeenCalledWith("Unique: ", 2);
   });
 
   test("results with --validate", () => {

@@ -69,6 +69,54 @@ const resultsNoOptios = [
   },
 ];
 
+const resultsDirectory = [
+  {
+    text: "Markdown",
+    href: "https://es.wikipedia.org/wiki/Markdown",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/anotherDirectory/hello.md",
+  },
+  {
+    text: "error",
+    href: "https://otra-cosa.net/algun-doc.html",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/anotherDirectory/hello.md",
+  },
+  {
+    text: "node",
+    href: "https://nodejs.org/es/",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/anotherDirectory/hello.md",
+  },
+  {
+    text: "duplica de node",
+    href: "https://nodejs.org/es/",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/anotherDirectory/hello.md",
+  },
+  {
+    text: "Manual Mocks con Jest - Documentación oficial",
+    href: "https://jestjs.io/docs/es-ES/manual-mocks",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/anotherDirectory/hello.md",
+  },
+  {
+    text: "Google",
+    href: "https://www.google.com/",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/test.md",
+  },
+  {
+    text: "Markdown",
+    href: "https://es.wikipedia.org/wiki/Markdown",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/test.md",
+  },
+  {
+    text: "Error",
+    href: "https://responseerror.com/",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/testBroken.md",
+  },
+  {
+    text: "Markdown",
+    href: "https://es.wikipedia.org/wiki/Markdown",
+    file: "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory/testBroken.md",
+  },
+];
+
 module.exports = {
   infoLinkMock,
   validateResultSuccess,
@@ -77,4 +125,5 @@ module.exports = {
   resultsNoOptios,
   resultsValidate,
   infoLinkBroken,
+  resultsDirectory,
 };

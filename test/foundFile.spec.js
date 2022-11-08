@@ -4,6 +4,7 @@ const {
   resultsNoOptios,
   infoLinkMock,
   filteredArray,
+  resultsDirectory,
 } = require("./mockdata.js");
 
 describe("foundFile", () => {
@@ -39,5 +40,26 @@ describe("foundFile", () => {
     return expect(foundFile(infoLinkMock.dir, infoLinkMock.options)).toEqual(
       filteredArray
     );
+  });
+
+  test("results with a directory without options", () => {
+    return expect(
+      foundFile(
+        "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory",
+        {
+          validate: undefined,
+          stats: undefined,
+        }
+      )
+    ).toEqual(resultsDirectory);
+  });
+
+  test("wrong path", () => {
+    return expect(
+      foundFile("/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDir", {
+        validate: undefined,
+        stats: undefined,
+      })
+    ).toEqual([]);
   });
 });
