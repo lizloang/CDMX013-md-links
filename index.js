@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 const foundFile = require("./lib/foundFile.js");
 const validate = require("./lib/validate.js");
 const stats = require("./lib/stats.js");

@@ -7,7 +7,7 @@ describe("stats", () => {
     expect(typeof stats).toBe("function");
   });
 
-  test('console.log the text "hello"', () => {
+  test('console.log the stats"', () => {
     const logSpy = jest.spyOn(console, "log");
 
     stats(infoLinkMock.dir, infoLinkMock.options);
