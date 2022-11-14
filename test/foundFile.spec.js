@@ -45,7 +45,7 @@ describe("foundFile", () => {
   test("results with a directory without options", () => {
     return expect(
       foundFile(
-        "/home/lizbeth/Laboratoria/CDMX013-md-links/test/testDirectory",
+        "C:\\Users\\lizbe\\Laboratoria\\CDMX013-md-links\\test\\testDirectory",
         {
           validate: undefined,
           stats: undefined,

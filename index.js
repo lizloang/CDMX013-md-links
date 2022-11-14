@@ -3,7 +3,7 @@ const foundFile = require("./lib/foundFile.js");
 const validate = require("./lib/validate.js");
 const stats = require("./lib/stats.js");
 
-function mdLinks(dir, options) {
+function mdLinks(dir, options = {}) {
   if (options.validate === "--validate" && options.stats === undefined) {
     const promises = validate(dir, options);
     return Promise.all(promises)
@@ -14,7 +14,10 @@ function mdLinks(dir, options) {
       .catch((error) => {
         console.log(error);
       });
-  } else if (options.validate === "--stats" && options.stats === undefined) {
+  } else if (
+    (options.validate === "--stats" && options.stats === undefined) ||
+    (options.stats === "--stats" && options.validate === undefined)
+  ) {
     stats(dir, options);
   } else if (
     (options.validate === "--validate" && options.stats === "--stats") ||
